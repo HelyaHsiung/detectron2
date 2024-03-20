@@ -24,7 +24,7 @@ def _create_pixel_dist_matrix(grid_size: int) -> torch.Tensor:
     # row = i // grid_size
     # col = i % grid_size
     pix_coords = (
-        torch.stack(torch.meshgrid(rows, cols), -1).reshape((grid_size * grid_size, 2)).float()
+        torch.stack(torch.meshgrid(rows, cols, indexing='ij'), -1).reshape((grid_size * grid_size, 2)).float()
     )
     return squared_euclidean_distance_matrix(pix_coords, pix_coords)
 
