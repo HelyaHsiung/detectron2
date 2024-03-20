@@ -130,7 +130,7 @@ class PixToShapeCycleLoss(nn.Module):
                 )
                 # pixel distances [M, M]
                 pixel_dists = self.pixel_dists.to(pixel_embeddings.device)[
-                    torch.meshgrid(pixel_indices_flattened, pixel_indices_flattened)
+                    torch.meshgrid(pixel_indices_flattened, pixel_indices_flattened, indexing='ij')
                 ]
                 # pixel embeddings [M, D]
                 pixel_embeddings_sampled = normalize_embeddings(
